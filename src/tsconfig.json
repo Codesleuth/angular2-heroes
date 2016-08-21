@@ -5,7 +5,7 @@
     "module": "system",
     "moduleResolution": "node",
     "noEmitOnError": true,
-    "outDir": "../app",
+    "outDir": "../docs/app",
     "target": "es5",
     "sourceMap": true
   },
