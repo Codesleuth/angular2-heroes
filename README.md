@@ -5,7 +5,7 @@ The usual setup!
 
 ```bash
 npm install
-npm run build
+npm run publish
 npm start
 ```
 
