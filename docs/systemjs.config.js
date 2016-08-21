@@ -27,7 +27,6 @@
   });
 
   SystemJS.config({
-    baseURL: '/',
     map: map,
     packages: packages
   });
