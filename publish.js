@@ -12,14 +12,20 @@ function cp(from, to, options) {
   });
 }
 
+function endsWith(s, suffix) {
+    return s.indexOf(suffix, s.length - suffix.length) !== -1;
+};
+
 const matchJS = /^.*\.js(\.map)?$/i;
-const js = (filename) => matchJS.test(filename);
+const js = (src) => matchJS.test(src);
+
+const file = (f, src) => endsWith(src, f) || endsWith(src, f + '.map');
 
 Promise.all([
   cp('node_modules/core-js/client/', 'docs/vendor/core-js/client/', { filter: js }),
   cp('node_modules/zone.js/dist/zone.min.js', 'docs/vendor/zone.js/dist/zone.min.js'),
   cp('node_modules/reflect-metadata/', 'docs/vendor/reflect-metadata/', { filter: js }),
-  cp('node_modules/systemjs/dist/system.js', 'docs/vendor/systemjs/dist/system.js'),
+  cp('node_modules/systemjs/dist/', 'docs/vendor/systemjs/dist/', { filter: file.bind(null, 'system.js') }),
   cp('node_modules/@angular/', 'docs/vendor/@angular/', { filter: js }),
   cp('node_modules/rxjs/', 'docs/vendor/rxjs/', { filter: js }),
   cp('systemjs.config.js', 'docs/systemjs.config.js'),
